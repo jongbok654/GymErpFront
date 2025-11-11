@@ -70,8 +70,6 @@ function EmpDetail({empNum: propEmpNum, onBack}) {
   if (!emp)
     return <div className="container mt-5 text-center">직원 정보를 불러오는 중...</div>;
 
-  const DEFAULT_PROFILE = "/profile/default.png";
-
   // 프로필 미리보기 URL 계산 (중첩 삼항 대신 함수로 분리)
   function getProfileUrl() {
     if (removeProfile) return null;                 // ← 삭제 예정이면 아이콘 보이도록
@@ -148,7 +146,8 @@ function EmpDetail({empNum: propEmpNum, onBack}) {
       await axios.put(`/v1/emp/${empNum}`, { ...emp, profileImage: null, removeProfile: true });
     } else {
       // 3) 일반 수정 → JSON PUT
-      await axios.put(`/emp/${empNum}`, { ...emp, removeProfile: false });
+      await axios.put(`/v1/emp/${empNum}`, { ...emp, removeProfile: false });
+
     }
       alert("직원 정보가 수정되었습니다.");
       setIsEditMode(false);

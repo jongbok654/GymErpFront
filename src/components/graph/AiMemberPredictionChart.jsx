@@ -83,7 +83,7 @@ function AiMemberPredictionChart() {
      4. 렌더링
   =============================== */
   return (
-    <ChartWrapper title="연말 회원수 예측">
+    <ChartWrapper title="연말 신규 회원수 예측">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={processedData}>
           {/* (1) 격자선 */}

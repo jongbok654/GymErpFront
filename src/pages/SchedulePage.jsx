@@ -150,6 +150,7 @@ export default function SchedulePage() {
     if (kw) params.keyword = kw;
     if (codeBid) params.codeBid = codeBid;
 
+
     const { data } = await axios.get(`/v1/schedules/search`, { params });
 
     const list = data?.list || [];
@@ -213,6 +214,7 @@ export default function SchedulePage() {
     if (!window.confirm("정말 이 일정을 삭제하시겠습니까?")) return;
 
     try {
+
       await axios.delete(`/v1/schedule/delete/${shNum}`);
       alert("일정이 삭제되었습니다.");
       await loadSchedules();

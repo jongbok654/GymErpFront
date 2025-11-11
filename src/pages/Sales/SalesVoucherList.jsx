@@ -10,12 +10,16 @@ function SalesVoucherList() {
   const [voucherTotalPage, setVoucherTotalPage] = useState(1);
   const [voucherPage, setVoucherPage] = useState(1);
   const [voucherLoading, setVoucherLoading] = useState(false);
+
+  // ✅ 필터 상태 (유효여부 필터 추가)
   const [voucherFilters, setVoucherFilters] = useState({
     startDate: "",
     endDate: "",
     member: "",
     memberName: "",
+    validityFilter: "전체", // ✅ 추가
   });
+
   const [showMemberModal, setShowMemberModal] = useState(false);
   const tableRef = useRef(null);
 
@@ -34,6 +38,10 @@ function SalesVoucherList() {
           startDate: voucherFilters.startDate || undefined,
           endDate: voucherFilters.endDate || undefined,
           memNum: voucherFilters.member || undefined,
+          validityFilter:
+            voucherFilters.validityFilter === "전체"
+              ? undefined
+              : voucherFilters.validityFilter, // ✅ 전체 선택 시 필터 제외
         },
       });
 
@@ -67,6 +75,7 @@ function SalesVoucherList() {
       endDate: "",
       member: "",
       memberName: "",
+      validityFilter: "전체", // 초기화 포함
     });
   };
 
@@ -165,6 +174,23 @@ function SalesVoucherList() {
                 onClick={() => setShowMemberModal(true)}
               />
             </div>
+
+            {/* ✅ 유효 여부 필터 드롭다운 */}
+            <div className="d-flex align-items-center flex-shrink-0">
+              <span className="me-2 fw-semibold">유효 여부</span>
+              <select
+                className="form-select"
+                style={{ width: "120px" }}
+                value={voucherFilters.validityFilter}
+                onChange={(e) =>
+                  handleVoucherFilterChange("validityFilter", e.target.value)
+                }
+              >
+                <option value="전체">전체</option>
+                <option value="유효">유효</option>
+                <option value="만료">만료</option>
+              </select>
+            </div>
           </div>
 
           {/* 초기화 버튼 */}
@@ -245,7 +271,8 @@ function SalesVoucherList() {
                               style={{
                                 width: "25%",
                                 color: v.validity === "유효" ? "black" : "red",
-                                fontWeight: v.validity === "만료" ? "bold" : "normal",
+                                fontWeight:
+                                  v.validity === "만료" ? "bold" : "normal",
                               }}
                             >
                               {v.validity === "유효" ? "유효" : "만료"}

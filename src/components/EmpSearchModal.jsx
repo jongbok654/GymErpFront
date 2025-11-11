@@ -2,8 +2,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Modal, Button, Table, Form, Badge, ListGroup, InputGroup } from "react-bootstrap";
 import axios from "axios";
-
 const LIST_API = "/v1/modals/employees";
+
 
 export default function EmpSearchModal({
   show,

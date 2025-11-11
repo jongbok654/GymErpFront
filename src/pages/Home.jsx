@@ -81,9 +81,8 @@ useEffect(() => {
 
         {/* 이하 동일 */}
         
-      <div className="row row-cols-1 row-cols-xl-2 g-4">
-
-        <div className="col">
+        <div className="row row-cols-1 row-cols-xl-2 g-4">
+          <div className="col">
             <div className="glass soft-shadow">
               <div className="card-body dashboard-sizer ai-tall">
                 <AiMemberPredictionChart />

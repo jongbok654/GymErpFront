@@ -24,6 +24,7 @@ function MemberModal({ show, onClose, onSuccess }) {
       return;
     }
     try {
+
       await axios.post("/v1/member", form);
       alert("회원이 등록되었습니다.");
       onClose?.();
