@@ -50,7 +50,7 @@ function EmpDetail({empNum: propEmpNum, onBack}) {
       if (!empNum) return;
       setMmLoading(true);
       setMmError(null);
-      const res = await axios.get(`http://localhost:9000/v1/emp/${empNum}/members/pt-users`);
+      const res = await axios.get(`/v1/emp/${empNum}/members/pt-users`);
       setManagedMembers(Array.isArray(res.data) ? res.data : []);
     } catch (e) {
       console.error("관리 회원 조회 실패:", e);
