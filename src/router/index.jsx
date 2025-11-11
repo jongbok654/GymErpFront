@@ -1,5 +1,5 @@
 // src/router/index.jsx
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 
 import App from "../App.jsx";
 import ProtectedRoute from "../components/ProtectedRoute.jsx";
@@ -48,7 +48,7 @@ import EmpAttendance from "../pages/EmpAttendance.jsx";
 
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
 
   // 2) 로그인 (비보호)
   {
